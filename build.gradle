@@ -1,8 +1,8 @@
 buildscript {
-  /*  repositories {
+    repositories {
       mavenCentral()
     }
-	*/
+
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
     }
@@ -11,9 +11,9 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'spring-boot'
 
-/*repositories {
+repositories {
     mavenCentral()
-}*/
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web") {
