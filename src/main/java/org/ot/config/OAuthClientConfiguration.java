@@ -41,8 +41,7 @@ class OAuthClientConfiguration {
 	details.setAccessTokenUri(env.getProperty("google.accessTokenUri"));
 	details.setUserAuthorizationUri(env.getProperty("google.userAuthorizationUri"));
 	details.setTokenName(env.getProperty("google.authorization.code"));
-	String commaSeparatedScopes = env.getProperty("google.auth.scope");
-	details.setScope(Arrays.stream(commaSeparatedScopes.split(",")).collect(Collectors.toList()));
+	details.setScope(Arrays.stream(env.getProperty("google.auth.scope").split(",")).collect(Collectors.toList()));
 	details.setPreEstablishedRedirectUri(env.getProperty("google.preestablished.redirect.url"));
 	details.setUseCurrentUri(false);
 	details.setAuthenticationScheme(AuthenticationScheme.query);

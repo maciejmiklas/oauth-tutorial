@@ -14,8 +14,7 @@ public class LognResource {
 
     @RequestMapping(method = RequestMethod.GET, path="/googleLogin")
     public String googleLogin() {
-	oauthRest.getAccessToken();
-	return "Hi There after Login !";
+	return oauthRest.getAccessToken().getValue();
     }
 
 }

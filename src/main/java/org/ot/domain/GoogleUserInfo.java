@@ -2,7 +2,7 @@ package org.ot.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GoogleProfile {
+public class GoogleUserInfo {
     private String id;
     private String email;
     @JsonProperty("verified_email")
