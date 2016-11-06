@@ -33,10 +33,6 @@ import javax.servlet.Filter;
 class OAuthConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    @Resource
-    @Qualifier("accessTokenRequest")
-    private AccessTokenRequest accessTokenRequest;
-
     @Autowired
     private OAuth2ClientContext oauth2ClientContext;
 
@@ -52,8 +48,8 @@ class OAuthConfiguration extends WebSecurityConfigurerAdapter {
     private Filter ssoFilter() {
 	OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(
 		"/*");
-	OAuth2RestTemplate facebookTemplate = new OAuth2RestTemplate(oauth2GoogleClient(), oauth2ClientContext);
-	filter.setRestTemplate(facebookTemplate);
+	OAuth2RestTemplate template = new OAuth2RestTemplate(oauth2GoogleClient(), oauth2ClientContext);
+	filter.setRestTemplate(template);
 	filter.setTokenServices(
 		new UserInfoTokenServices(oauth2GoogleResource().getUserInfoUri(), oauth2GoogleClient().getClientId()));
 	return filter;
@@ -82,8 +78,8 @@ class OAuthConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+   // @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
     public OAuth2RestTemplate googleRestTemplate() {
-	return new OAuth2RestTemplate(oauth2GoogleClient(), new DefaultOAuth2ClientContext(accessTokenRequest));
+	return new OAuth2RestTemplate(oauth2GoogleClient(), oauth2ClientContext);
     }
 }
