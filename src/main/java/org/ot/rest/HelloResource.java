@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloResource {
 
-    @RequestMapping(method = RequestMethod.GET, path="/hello")
+    @RequestMapping(method = RequestMethod.GET, path="/rest/hello")
     public String index() {
 	return "Hi There !";
     }
